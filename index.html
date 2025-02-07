@@ -6,41 +6,95 @@
     <title>Ballistic Calculator</title>
 </head>
 <body>
+    <section>
     <h1>Ballistic Calculator</h1>
 
-    <label for="x0",for="y0",for="z0">Cannon Coordinate:</label>
-    <div class="coordinates">
-        <input type="number" id="x0" placeholder="x" class="coordinates">
-        <input type="number" id="y0" placeholder="y" class="coordinates">
-        <input type="number" id="z0" placeholder="z" class="coordinates">
-    </div>
+    <label><span class="label">Cannon Coordinate</span>
+        <input type="number" id="x0" placeholder="x">
+        <input type="number" id="y0" placeholder="y">
+        <input type="number" id="z0" placeholder="z">
+    </label>
+    
+    <label><span class="label">Cannon Length</span>
+    <input type="number" id="cannonLength">
+    </label>
 
-    <label for="x",for="y",for="z">Target Coordinate:</label>
-    <div class="coordinates">
-        <input type="number" id="x" placeholder="x" class="coordinates">
-        <input type="number" id="y" placeholder="y" class="coordinates">
-        <input type="number" id="z" placeholder="z" class="coordinates">
-    </div>
+    <label><span class="label">Axis Offset</span>
+        <input type="number" id="axisOffset" value="0">
+    </label>
 
-    <label for="cannonDirection">Cannon Direction:</label>
-    <select id="cannonDirection">
-        <option value="n">North</option>
-        <option value="s">South</option>
-        <option value="e">East</option>
-        <option value="w">West</option>
-    </select>
+    <label><span class="label">Target Coordinate</span>
+    <div class="row">
+        <input type="number" id="x" placeholder="x">
+        <input type="number" id="y" placeholder="y">
+        <input type="number" id="z" placeholder="z">
+    </div>
+    </label>
+
+    <label><span class="label">Cannon Direction</span>
+        <select id="cannonDirection">
+            <option value="north">North</option>
+            <option value="south">South</option>
+            <option value="east">East</option>
+            <option value="west">West</option>
+            <option value="south">Facing</option>
+        </select>
+    </label>
+
+    <label><span class="label">Yaw Offset</span>
+            <input type="number" id="yawOffset" value="0">
+    </label>
+
+    <label><span class="label">Cannon Type </span>
+        <select id="cannonType">
+            <option value="normal">Normal</option>
+            <option value="upsideDown">Upside Down</option>
+            <option value="noLimit">No limit</option>
+        </select>
+    </label>
+
     
-    <label for="cannonLength">Cannon Length from rotaion axis:</label>
-    <input type="number" id="cannonLength" class="numberSmall">
     
-    <label for="chargePower">Muzzle Velocity (m/s):</label>
-    <input type="number" id="chargePower" class="numberSmall">
-    
+    <label><span class="label">Muzzle Velocity</span>
+        <input type="number" id="muzzleVelocity">
+        <select id="muzzleVelocityType">
+            <option value="m/s">m/s</option>
+            <option value="powderCharge">Powder Charge</option>
+        </select>  
+    </label>
+
     <button onclick="calculate()">Calculate</button>
+    <button popovertarget="help">Help</button>
+
+    <div id="help" popover>
+        <p><strong id="helpColor">Cannon Coordinate</strong> is coordinate of pitch axis block.</p>
+        <p><strong id="helpColor">Cannon Length</strong> is length of cannon.</p> 
+        <p>(Axis block included, so this value should be more than 1.)</p>
+        <p><strong id="helpColor">Axis offset</strong> is the distance of yaw axis and pitch axis.</p>
+        <p>(Yaw Axis excluded, so if yaw axis is under the pitch axis, it should be 0.)</p>
+        <p>This value would be useful when you are using <strong>Create:Interactive</strong>.</p>
+        <p><strong id="helpColor">Target Coordinate</strong> is coordinate of the target block.</p>
+        <p>It is a good idea to increase or decrease <strong>Y</strong> if your shell didn't hit the target.</p>
+        <p>This is example of values↓</p>
+        <img src="cannon.png" />
+        <p><strong id="helpColor">Cannon Direction</strong> is direction of the cannon. You can check the direction in F3 screen.</p>
+        <p><strong>Facing</strong> option needs <strong>Yaw Offset</strong> to work properly.</p>
+        <p><strong id="helpColor">Yaw Offset</strong> represents cannon's actual direction.</p> 
+        <p>A positive value means right, a negative value means left. The value range is -180 to 180.</p> 
+        <p>(E.g. "North -30" means the cannon facing 30° to the left from the north.)</p>
+        <p>Also, if you select <strong>Facing</strong> in <strong>Cannon Direction</strong>, you will be able to input facing value from F3 screen.</p>
+        <img src="f3.png" />
+        <p><strong id="helpColor">Cannon Type</strong> is option to limit <strong>Pitch range</strong>.</p>
+        <p><strong>Normal</strong>: -30 to 60° / <strong>Upside Down</strong>: 30 to -60° / <strong>No limit</strong>: -90 to 90°</p>
+        <p><strong id="helpColor">Muzzle Velocity</strong> has two option. <strong>m/s</strong> or <strong>Powder Charge</strong>.</p>
+        <button popovertarget="help" id="close">Close</button>
+    </div>
     
-    <h2>Results:</h2>
     <div id="output"></div>
-    
+
+    </section>
+
+
     <script src="script.js"></script>
     <link href="style.css" rel="stylesheet">
 </body>
