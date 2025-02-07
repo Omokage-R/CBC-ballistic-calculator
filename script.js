@@ -128,7 +128,7 @@ function calculate() {
             pitchRange = [[-30,30],[30,60]];
             break;
         case "upsideDown":
-            pitchRange = [[-60,0],[0,30]];
+            pitchRange = [[-90,0],[0,15]];
             break;
         case "noLimit":
             pitchRange = [[-90,30],[30,90]];
