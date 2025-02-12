@@ -50,13 +50,13 @@ function anglesFinder(V0, targetDistance, targetHeight, cannonLength, axisOffset
             let Vx = (V0 / 20) * Math.cos(angleRad);
             let Vy = (V0 / 20) * Math.sin(angleRad);
             let heightOffset = cannonLength * Math.sin(angleRad)
-            let horizontalDistance = targetDistance - (cannonLength * Math.cos(angleRad) + axisOffset);
-            let timeInAir = Math.abs(Math.log(1 - horizontalDistance / (100 * Vx)) / Math.log(0.99));
-            let verticalPosition = 100 * (Vy + 5) * (1 - (0.99 ** timeInAir)) - 5 * timeInAir
+            let x = targetDistance - (cannonLength * Math.cos(angleRad) + axisOffset);
+            let timeInAir = Math.abs(Math.log(1 - x / (100 * Vx)) / Math.log(0.99));
+            let y = 100 * (Vy + 5) * (1 - (0.99 ** timeInAir)) - 5 * timeInAir
             
             
-            if (Math.abs((targetHeight + heightOffset) - verticalPosition) < toleranceRange) { 
-                let error = Math.abs(Math.abs(targetHeight - verticalPosition));
+            if (Math.abs(targetHeight - y + heightOffset) < toleranceRange) { 
+                let error = Math.abs(Math.abs(targetHeight - y + heightOffset));
                 if (error < minError) { 
                     minError = error;
                     bestAngle = angleDeg;
